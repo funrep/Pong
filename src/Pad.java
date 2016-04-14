@@ -42,4 +42,16 @@ public class Pad {
 	public int getPosY() {
 		return posY;
 	}
+	
+	public int getSizeX() {
+		return sizeX;
+	}
+	
+	public int getSizeY() {
+		return sizeY;
+	}
+	
+	public int getOffset() {
+		return offset;
+	}
 }

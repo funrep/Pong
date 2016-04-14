@@ -18,7 +18,8 @@ public class Ball {
 		size = 20;
 		offset = size / 2;
 		Random rnd = new Random();
-		velY = 0.2 * rnd.nextDouble();
+		// velY = 0.2 * rnd.nextDouble();
+		velY = 0;
 		if (velY > 0) {
 			velX = 0.3;
 		} else {
@@ -28,8 +29,9 @@ public class Ball {
 	}
 	
 	public void update(double dt, Pad left, Pad right) {
-		if ((posX >= 640 - 10 - 20 - 10) && (posX <= 640)) {
-			if ((posY >= right.getPosY()) && (posY <= right.getPosY() + 50)) {
+		if ((posX >= right.getPosX()) && (posX <= Window.WIDTH - right.getOffset())) {
+			if ((posY >= right.getPosY()) && (posY <= right.getPosY() + right.getSizeY())
+					&& (velX > 0)) {
 				velX = -velX;
 				if ((posY >= right.getPosY() + 15) && (posY <= right.getPosY() + 50 - 15)) {
 					;
@@ -38,11 +40,11 @@ public class Ball {
 				} else if ((posY >= right.getPosY() + 50 - 15) && (posY <= right.getPosY() + 50)) {
 					velY = -ballBounce;
 				}
-				
 			}
 		}
-		if ((posX >= 0) && (posX <= 40)) {
-			if ((posY >= left.getPosY()) && (posY <= left.getPosY() + 50)) {
+		if ((posX >= left.getOffset()) && (posX <= left.getOffset() + left.getSizeX())) {
+			if ((posY >= left.getPosY()) && (posY <= left.getPosY() + 50)
+					&& (velX < 0)) {
 				velX = -velX;
 				if ((posY >= left.getPosY() + 15) && (posY <= left.getPosY() + 50 - 15)) {
 					;
@@ -54,9 +56,9 @@ public class Ball {
 				
 			}
 		}
-		if (posY <= 10)
+		if ((posY <= 10) && (velY < 0))
 			velY = -velY;
-		if (posY >= 480 - 10)
+		if ((posY >= 480 - 10) && (velY > 0))
 			velY = -velY;
 		
 		posX += dt * velX;

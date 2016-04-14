@@ -37,7 +37,8 @@ public class Main extends BasicGame
 		{
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new Main("Pong"));
-			appgc.setDisplayMode(640, 480, false);
+			appgc.setDisplayMode(Window.WIDTH, Window.HEIGHT, false);
+			appgc.setTargetFrameRate(Window.FPS);
 			appgc.start();
 		}
 		catch (SlickException ex)

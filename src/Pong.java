@@ -48,6 +48,9 @@ public class Pong {
 					System.exit(0);
 				}
 			}
+		} else if (state == GameState.BEGIN) {
+			ball = new Ball();
+			state = GameState.PLAY;
 		} else if (state == GameState.PLAY) { 
 			boolean w = inp.isKeyDown(Input.KEY_W);
 			boolean s = inp.isKeyDown(Input.KEY_S);
@@ -58,6 +61,13 @@ public class Pong {
 			padRight.update(dt, up, down);
 			
 			ball.update(dt, padLeft, padRight);
+			if (ball.getPosX() > Window.WIDTH + ball.getSize()) {
+				scoreRight += 1;
+				state = GameState.BEGIN;
+			} else if (ball.getPosX() < 0) {
+				scoreLeft += 1;
+				state = GameState.BEGIN;
+			}
 		}
 	}
 	

@@ -18,8 +18,7 @@ public class Ball {
 		size = 20;
 		offset = size / 2;
 		Random rnd = new Random();
-		// velY = 0.2 * rnd.nextDouble();
-		velY = 0;
+		velY = 0.2 * rnd.nextDouble();
 		if (velY > 0) {
 			velX = 0.3;
 		} else {
@@ -75,5 +74,9 @@ public class Ball {
 	
 	public int getPosY() {
 		return posY;
+	}
+	
+	public int getSize() {
+		return size;
 	}
 }

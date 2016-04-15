@@ -11,6 +11,7 @@ public class Pong {
 	private Ball ball;
 	private Pad padLeft;
 	private Pad padRight;
+	private boolean spaceBar;
 	
 	public Pong() {
 		state = GameState.MENU;
@@ -29,6 +30,7 @@ public class Pong {
 		ball = new Ball();
 		padLeft = new Pad(true, padSpeed);
 		padRight = new Pad(false, padSpeed);
+		spaceBar = false;
 	}
 	
 	public void update(int dt, Input inp) {
@@ -38,7 +40,7 @@ public class Pong {
 			if (inp.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				if (buttons[0].contains(mouseX, mouseY)) {
 					// Play
-					state = GameState.PLAY;
+					state = GameState.BEGIN;
 				} else if (buttons[1].contains(mouseX, mouseY)) {
 					// Controls
 				} else if (buttons[2].contains(mouseX, mouseY)) {
@@ -50,7 +52,7 @@ public class Pong {
 			}
 		} else if (state == GameState.BEGIN) {
 			ball = new Ball();
-			state = GameState.PLAY;
+			state = GameState.PAUSE;
 		} else if (state == GameState.PLAY) { 
 			boolean w = inp.isKeyDown(Input.KEY_W);
 			boolean s = inp.isKeyDown(Input.KEY_S);
@@ -67,6 +69,14 @@ public class Pong {
 			} else if (ball.getPosX() < 0) {
 				scoreLeft += 1;
 				state = GameState.BEGIN;
+			}
+		} else if (state == GameState.PAUSE) {
+			if (!spaceBar) {
+				spaceBar = inp.isKeyDown(Input.KEY_SPACE);
+				if (spaceBar) {
+					state = GameState.PLAY;
+					spaceBar = false;
+				}
 			}
 		}
 	}
@@ -89,6 +99,10 @@ public class Pong {
 			padLeft.render(g);
 			padRight.render(g);
 			ball.render(g);
+			if (state == GameState.PAUSE) {
+				g.drawString("Press space to begin.", Window.WIDTH / 2 - 95,
+						Window.HEIGHT - 50);
+			}
 		}
 	}
 }

@@ -18,8 +18,12 @@ public class Ball {
 		size = 20;
 		offset = size / 2;
 		Random rnd = new Random();
-		velY = 0.2 * rnd.nextDouble();
-		if (velY > 0) {
+		if (rnd.nextBoolean()) {
+			velY = 0.15 * rnd.nextDouble();
+		} else {
+			velY = 0.15 * rnd.nextDouble();
+		}
+		if (rnd.nextBoolean()) {
 			velX = 0.3;
 		} else {
 			velX = -0.3;
@@ -35,9 +39,9 @@ public class Ball {
 				if ((posY >= right.getPosY() + 15) && (posY <= right.getPosY() + 50 - 15)) {
 					;
 				} else if ((posY >= right.getPosY()) && (posY <= right.getPosY() + 15)) {
-					velY = ballBounce;
-				} else if ((posY >= right.getPosY() + 50 - 15) && (posY <= right.getPosY() + 50)) {
 					velY = -ballBounce;
+				} else if ((posY >= right.getPosY() + 50 - 15) && (posY <= right.getPosY() + 50)) {
+					velY = ballBounce;
 				}
 			}
 		}
@@ -48,9 +52,9 @@ public class Ball {
 				if ((posY >= left.getPosY() + 15) && (posY <= left.getPosY() + 50 - 15)) {
 					;
 				} else if ((posY >= left.getPosY()) && (posY <= left.getPosY() + 15)) {
-					velY = ballBounce;
-				} else if ((posY >= left.getPosY() + 50 - 15) && (posY <= left.getPosY() + 50)) {
 					velY = -ballBounce;
+				} else if ((posY >= left.getPosY() + 50 - 15) && (posY <= left.getPosY() + 50)) {
+					velY = ballBounce;
 				}
 				
 			}

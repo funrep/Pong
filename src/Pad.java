@@ -20,7 +20,7 @@ public class Pad {
 		offset = 10;
 		if (leftOrRight) { // left
 			posX = offset;
-			posY = Window.HEIGHT / 2 - 25;
+			posY = Window.HEIGHT / 2 - (sizeY / 2);
 		} else { // right
 			posX = Window.WIDTH - offset - sizeX;
 			posY = Window.HEIGHT / 2 - (sizeY / 2);
@@ -72,6 +72,14 @@ public class Pad {
 	 */
 	public int getPosY() {
 		return posY;
+	}
+	
+	/**
+	 * Set pad's Y position.
+	 * @param Y position.
+	 */
+	public void setPosY(int y) {
+		posY = y;
 	}
 	
 	/**

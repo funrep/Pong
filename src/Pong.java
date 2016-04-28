@@ -134,6 +134,10 @@ public class Pong {
 			if (inp.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				if (buttons[3].contains(mouseX, mouseY)) {
 					// Back
+					scoreRight = 0;
+					scoreLeft = 0;
+					padRight.setPosY(Window.HEIGHT / 2 - 25);
+					padLeft.setPosY(Window.HEIGHT / 2 - 25);
 					state = GameState.MENU;
 				}
 			}
